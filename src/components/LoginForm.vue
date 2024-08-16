@@ -85,7 +85,8 @@ const submittedCards = ref([]);
 
 const submitForm = () => {
     validateName(true);
-    if (!errors.value.username) {
+    validatePassword(true);
+    if (!errors.value.username && !!errors.value.password) {
         submittedCards.value.push({ ...formData.value });
         clearForm();
     }
