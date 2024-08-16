@@ -148,20 +148,17 @@ h1 {
     margin-top: 50px;
 }
 
-/* ID selectors */
+
 #username:focus,
 #password:focus,
 #isAustralian:focus,
 #reason:focus {
     border-color: #FF6347;
-    /* Tomato */
     background-color: #FFEBE8;
-    /* Light background color */
 }
 
-/* Attribute selectors */
+
 select[id="gender"] {
     background-color: #d3d3d3;
-    /* Light gray */
 }
 </style>
