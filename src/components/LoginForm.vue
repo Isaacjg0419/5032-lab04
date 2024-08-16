@@ -48,20 +48,13 @@
                     </div>
                     <div class="row mt-5" v-if="submittedCards.length">
                         <div class="d-flex flex-wrap justify-content-start">
-                            <div v-for="(card, index) in submittedCards" :key="index" class="card m-2"
-                                style="width: 18rem;">
-                                <div class="card-header">
-                                    User Information
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Username: {{ card.username }}</li>
-                                    <li class="list-group-item">Password: {{ card.password }}</li>
-                                    <li class="list-group-item">Australian Resident: {{ card.isAustralian ? 'Yes' : 'No'
-                                        }}</li>
-                                    <li class="list-group-item">Gender: {{ card.gender }}</li>
-                                    <li class="list-group-item">Reason: {{ card.reason }}</li>
-                                </ul>
-                            </div>
+                            <DataTable :value="submittedCards" tableStyle="min-width: 50rem">
+                                <Column field="username" header="Username"></Column>
+                                <Column field="password" header="Password"></Column>
+                                <Column field="isAustralian" header="Australian Resident"></Column>
+                                <Column field="gender" header="Gender"></Column>
+                                <Column field="reason" header="Reason"></Column>
+                            </DataTable>
                         </div>
                     </div>
                 </form>
@@ -70,8 +63,11 @@
     </div>
 </template>
 
+
 <script setup>
 import { ref } from 'vue';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 
 const formData = ref({
     username: '',
@@ -83,14 +79,19 @@ const formData = ref({
 
 const submittedCards = ref([]);
 
-const submitForm = () => {
-    validateName(true);
-    validatePassword(true);
-    if (!errors.value.username && !!errors.value.password) {
-        submittedCards.value.push({ ...formData.value });
-        clearForm();
+const errors = ref({
+    username: null,
+    password: null,
+});
+
+const validateName = (blur) => {
+    if (formData.value.username.length < 3) {
+        errors.value.username = blur ? "Username must be at least 3 characters long" : null;
+    } else {
+        errors.value.username = null;
     }
 };
+
 const validatePassword = (blur) => {
     const password = formData.value.password;
     const minLength = 8;
@@ -100,21 +101,28 @@ const validatePassword = (blur) => {
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
     if (password.length < minLength) {
-        if (blur) errors.value.password = `password must have at least ${minLength} characters long`;
-
+        errors.value.password = blur ? `Password must be at least ${minLength} characters long` : null;
     } else if (!hasUppercase) {
-        if (blur) errors.value.password = "password must have at least one upper case characters long";
+        errors.value.password = blur ? "Password must have at least one uppercase letter" : null;
     } else if (!hasLowercase) {
-        if (blur) errors.value.password = "password must have at least one upper case characters long";
-    }
-    else if (!hasNumber) {
-        if (blur) errors.value.password = "password must have at least one number";
+        errors.value.password = blur ? "Password must have at least one lowercase letter" : null;
+    } else if (!hasNumber) {
+        errors.value.password = blur ? "Password must have at least one number" : null;
     } else if (!hasSpecialChar) {
-        if (blur) errors.value.password = "password must have at least one Special Char";
+        errors.value.password = blur ? "Password must have at least one special character" : null;
     } else {
         errors.value.password = null;
     }
-}
+};
+
+const submitForm = () => {
+    validateName(true);
+    validatePassword(true);
+    if (!errors.value.username && !errors.value.password) {
+        submittedCards.value.push({ ...formData.value });
+        clearForm();
+    }
+};
 
 const clearForm = () => {
     formData.value = {
@@ -125,21 +133,6 @@ const clearForm = () => {
         gender: ''
     };
 };
-
-const errors = ref({
-    username: null,
-    password: null,
-    resident: null,
-    gender: null,
-    reason: null,
-})
-const validateName = (blur) => {
-    if (formData.value.username.length < 3) {
-        if (blur) errors.value.username = "Name must be at least 3 characters";
-    } else {
-        errors.value.username = null;
-    }
-}
 </script>
 
 <style scoped>
@@ -147,7 +140,6 @@ const validateName = (blur) => {
 h1 {
     text-align: center;
     margin-top: 20px;
-    /* text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); */
 }
 
 /* Class selectors */
@@ -162,14 +154,14 @@ h1 {
 #isAustralian:focus,
 #reason:focus {
     border-color: #FF6347;
-    /* More obvious border color change (Tomato) */
+    /* Tomato */
     background-color: #FFEBE8;
-    /* Light background color change */
+    /* Light background color */
 }
 
 /* Attribute selectors */
 select[id="gender"] {
     background-color: #d3d3d3;
-    /* Default background color set to gray */
+    /* Light gray */
 }
 </style>
