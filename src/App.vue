@@ -2,15 +2,20 @@
 // import HelloWorld from './components/HelloWorld.vue'
 // import TheWelcome from './components/TheWelcome.vue'
 // import Json from './components/JSON.vue';
-import Form from './components/LoginForm.vue';
+// import Form from './components/LoginForm.vue';
+import BHeader from './components/BHeader.vue';
 </script>
 
 <template>
-  <Form></Form>
+  <div class="main-container">
+    <header>
+      <BHeader></BHeader>
+    </header>
+    <main class="main-box">
+      <router-view></router-view>
+    </main>
+  </div>
 
-  <!-- <main>
-    <Json />
-  </main> -->
 </template>
 
 <style scoped>
