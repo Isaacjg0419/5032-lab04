@@ -1,7 +1,7 @@
-<!-- <template> -->
+<template>
 <!-- Using Bootstrap's Header template (starter code) -->
 <!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
-<!-- <div class="container">
+<div class="container">
       <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
           <li class="nav-item">
@@ -15,11 +15,11 @@
         </ul>
       </header>
     </div>
-  </template> -->
+  </template>
 
 
 <!-- src/components/Navbar.vue -->
-<template>
+<!-- <template>
     <div class="container">
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
@@ -38,7 +38,7 @@
             </ul>
         </header>
     </div>
-</template>
+</template> -->
 
 <script setup>
 import { ref, watch } from 'vue';
