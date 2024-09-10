@@ -1,9 +1,21 @@
 <template>
-    <h1>Sign in</h1>
-    <p><input type="text" placeholder="Email" v-model="email" /></p>
-    <p><input type="password" placeholder="Password" v-model="password" /></p>
-    <p><button @click="signin">Sign in via Firebase</button></p>
-    <p><button @click="goToRegister">Register</button></p>
+    <div class="container h-100 d-flex align-items-center justify-content-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Sign in</h1>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" placeholder="Email" v-model="email" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control mb-3" placeholder="Password" v-model="password" />
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary" @click="signin">Sign in via Firebase</button>
+                    <button class="btn btn-secondary" @click="goToRegister">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -33,3 +45,14 @@ const goToRegister = () => {
     router.push("/FireRegister")
 }
 </script>
+
+<style>
+html,
+body {
+    height: 100%;
+}
+
+.container {
+    max-width: 400px;
+}
+</style>
