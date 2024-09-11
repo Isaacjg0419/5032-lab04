@@ -1,24 +1,22 @@
 <template>
-<!-- Using Bootstrap's Header template (starter code) -->
-<!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
-<div class="container">
-      <header class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-          <li class="nav-item">
-            <router-link to="/" class="nav-link" active-class="active" aria-current="page"
-              >Home (Week 5)</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/about" class="nav-link" active-class="active">About</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/FireLogin" class="nav-link" active-class="active">Firebase Login</router-link>
-          </li>
-        </ul>
-      </header>
-    </div>
-  </template>
+  <!-- Using Bootstrap's Header template (starter code) -->
+  <!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
+  <div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <router-link to="/" class="nav-link" active-class="active" aria-current="page">Home (Week 5)</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/about" class="nav-link" active-class="active">About</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/FireLogin" class="nav-link" active-class="active">Firebase Login</router-link>
+        </li>
+      </ul>
+    </header>
+  </div>
+</template>
 
 
 <!-- src/components/Navbar.vue -->
@@ -51,15 +49,14 @@ const isAuthenticated = ref(localStorage.getItem('isAuthenticated') === 'true');
 const router = useRouter();
 
 const logout = () => {
-    localStorage.removeItem('isAuthenticated');
-    isAuthenticated.value = false;
-    router.push('/login');
+  localStorage.removeItem('isAuthenticated');
+  isAuthenticated.value = false;
+  router.push('/login');
 };
 watch(() => localStorage.getItem('isAuthenticated'), (newValue) => {
-    isAuthenticated.value = newValue === 'true';
+  isAuthenticated.value = newValue === 'true';
 });
 </script>
 
 <style scoped>
-/* Add styling here */
 </style>
