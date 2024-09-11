@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="container">
         <h1>Add a Book</h1>
-        <form @submit.prevent="addBook">
+        <form @submit.prevent="addBook" class="form-container">
             <div>
                 <label for="isbn">ISBN:</label>
                 <input type="text" id="isbn" v-model="isbn" />
@@ -26,7 +26,7 @@ export default {
     setup() {
         const isbn = ref("");
         const name = ref("");
-        const { proxy } = getCurrentInstance();  // To access $refs inside setup
+        const { proxy } = getCurrentInstance();
 
         const addBook = async () => {
             try {
@@ -67,6 +67,28 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 300px;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 form {
     margin-bottom: 2rem;
 }
