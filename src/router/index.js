@@ -6,6 +6,7 @@ import AccessDeniedView from "../views/AccessDeniedView.vue";
 import FirebaseSigninView from "@/views/FirebaseSigninView.vue";
 import FirebaseRegisterView from "@/views/FirebaseRegisterView.vue";
 import AddBookView from "../views/AddBookView.vue";
+import GetBookCountView from "../views/GetBookCountView.vue";
 
 const isAuthenticated = () =>
   localStorage.getItem("isAuthenticated") === "true";
@@ -27,6 +28,7 @@ const routes = [
     component: FirebaseRegisterView,
   },
   { path: "/AddBook", name: "AddBook", component: AddBookView },
+  { path: "/GetBookCount", name: "GetBookCountView", component: GetBookCountView }
 ];
 
 const router = createRouter({
