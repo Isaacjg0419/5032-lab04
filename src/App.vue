@@ -1,22 +1,32 @@
-<script setup>
-// import HelloWorld from './components/HelloWorld.vue'
-// import TheWelcome from './components/TheWelcome.vue'
-// import Json from './components/JSON.vue';
-// import Form from './components/LoginForm.vue';
-import BHeader from './components/BHeader.vue';
-</script>
-
 <template>
   <div class="main-container">
-    <header>
-      <BHeader></BHeader>
+    <header v-if="showHeader">
+      <BHeader />
     </header>
     <main class="main-box">
       <router-view></router-view>
     </main>
   </div>
-
 </template>
+
+<script>
+import BHeader from './components/BHeader.vue';
+import CountBookAPI from "./views/CountBookAPI.vue";
+
+export default {
+  name: 'App',
+  components: {
+    BHeader,
+    CountBookAPI
+  },
+  computed: {
+    showHeader() {
+      return this.$route.name !== 'CountBookAPI';
+    }
+  }
+};
+</script>
+
 
 <style scoped>
 header {

@@ -8,6 +8,7 @@ import FirebaseRegisterView from "@/views/FirebaseRegisterView.vue";
 import AddBookView from "../views/AddBookView.vue";
 import GetBookCountView from "../views/GetBookCountView.vue";
 import WeatherView from "../views/WeatherView.vue";
+import CountBookAPI from "@/views/CountBookAPI.vue";
 
 const isAuthenticated = () =>
   localStorage.getItem("isAuthenticated") === "true";
@@ -29,8 +30,17 @@ const routes = [
     component: FirebaseRegisterView,
   },
   { path: "/AddBook", name: "AddBook", component: AddBookView },
-  { path: "/GetBookCount", name: "GetBookCountView", component: GetBookCountView },
-  { path: "/WeatherCheck", name: "WeatherCheck", component: WeatherView }
+  {
+    path: "/GetBookCount",
+    name: "GetBookCountView",
+    component: GetBookCountView,
+  },
+  { path: "/WeatherCheck", name: "WeatherCheck", component: WeatherView },
+  {
+    path: "/CountBookAPI",
+    name: "CountBookAPI",
+    component: CountBookAPI,
+  },
 ];
 
 const router = createRouter({

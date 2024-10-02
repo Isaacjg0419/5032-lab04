@@ -1,9 +1,8 @@
 <template>
     <div>
-      <pre>{{jsonData }}</pre>
+        <pre>{{ jsonData }}</pre>
     </div>
-  </template>
-  
+</template>
 <script>
 // 6.4 - Import axios
 import axios from 'axios';
@@ -11,17 +10,19 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            count: null,
+            jsonData: null,
             error: null,
-            jsonData:null,
         };
+    },
+    mounted() {
+        this.getBookCountAPI();
     },
     methods: {
         async getBookCountAPI() {
             try {
                 const response = await axios.get('https://us-central1-week7-jiayuan-6b508.cloudfunctions.net/countBooks');
                 // 6.3 - Assign the count from response data
-                this.count = response.data.count;
+                this.jsonData = response.data;
                 this.error = null;
             } catch (err) {
                 // 6.6 - Catch error and display it
